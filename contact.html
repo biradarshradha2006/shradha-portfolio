@@ -1,131 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Shradha Biradar</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-    <h2 class="logo">Shradha Biradar</h2>
-
+    <h2 class="logo">Shradha<span>.</span></h2>
     <nav>
         <a href="index.html">Home</a>
         <a href="resume.html">Resume</a>
         <a href="biodata.html">Bio-Data</a>
         <a href="skills.html">Skills</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="active">Contact</a>
     </nav>
 </header>
 
-<section class="contact-page">
+<main class="page-container">
 
-    <div class="contact-heading">
-        <span>LET'S CONNECT</span>
-        <h1>Get In Touch</h1>
+    <section class="page-heading">
+        <div class="tag">LET'S CONNECT / 2026</div>
+        <h1>Let's Start a <span>Conversation.</span></h1>
         <p>
-            Have an opportunity, project idea or just want to connect?
-            I'd love to hear from you!
+            Have an opportunity, project idea or question?
+            Feel free to connect with me.
         </p>
-    </div>
+    </section>
 
-    <div class="contact-container">
+    <section class="contact-layout">
 
         <div class="contact-info">
-
+            <div class="tag">GET IN TOUCH</div>
             <h2>Let's Talk!</h2>
-
-            <p class="contact-description">
-                I am always interested in learning, collaborating
-                and exploring new opportunities in technology.
+            <p>
+                I am interested in technology, learning new things
+                and collaborating on creative ideas.
             </p>
 
             <div class="contact-item">
-                <span>✉️</span>
+                <div class="contact-icon">🎓</div>
                 <div>
-                    <h3>Email</h3>
-                    <p>biradarshradha2006@gmail.com</p>
+                    <small>EDUCATION</small>
+                    <h3>Computer Science Engineering</h3>
                 </div>
             </div>
 
             <div class="contact-item">
-                <span>🎓</span>
+                <div class="contact-icon">💻</div>
                 <div>
-                    <h3>Education</h3>
-                    <p>Computer Science Engineering</p>
+                    <small>AREAS OF INTEREST</small>
+                    <h3>Software Development &amp; AI</h3>
                 </div>
             </div>
 
-            <div class="contact-item">
-                <span>💻</span>
-                <div>
-                    <h3>Interests</h3>
-                    <p>Software Development & AI</p>
-                </div>
-            </div>
+            <h3 class="social-title">Find Me Online</h3>
 
-            <h3 class="social-title">Connect With Me</h3>
             <div class="social-links">
+                <a href="https://www.linkedin.com/in/shradha-biradar-728a49358/"
+                   target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
 
-    <a href="https://www.linkedin.com/in/shradha-biradar-728a49358/"
-       target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                <a href="https://github.com/biradarshradha2006"
+                   target="_blank" rel="noopener noreferrer">GitHub ↗</a>
 
-    <a href="https://github.com/biradarshradha2006"
-       target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-
-    <a href="https://www.instagram.com/shradha_biradar_04/"
-       target="_blank" rel="noopener noreferrer">Instagram ↗</a>
-
-</div>
-
-           
-
+                <a href="https://www.instagram.com/shradha_biradar_04/"
+                   target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+            </div>
         </div>
 
-        <div class="contact-form">
-
+        <div class="contact-form-card">
+            <div class="tag">YOUR MESSAGE</div>
             <h2>Send Me a Message</h2>
+            <p>Fill in the details below.</p>
 
             <form id="contactForm">
 
-                <label for="name">Your Name</label>
-                <input type="text" id="name"
-                    placeholder="Enter your name" required>
+                <label for="name">Your Full Name</label>
+                <input type="text" id="name" name="name"
+                       placeholder="Enter your full name" required>
 
-                <label for="email">Your Email</label>
-                <input type="email" id="email"
-                    placeholder="Enter your email" required>
+                <label for="email">Your Email Address</label>
+                <input type="email" id="email" name="email"
+                       placeholder="example@gmail.com" required>
 
                 <label for="subject">Subject</label>
-                <input type="text" id="subject"
-                    placeholder="Enter subject" required>
+                <input type="text" id="subject" name="subject"
+                       placeholder="Enter subject" required>
 
                 <label for="message">Your Message</label>
-                <textarea id="message"
-                    placeholder="Write your message..."
-                    rows="5" required></textarea>
+                <textarea id="message" name="message"
+                          rows="5" placeholder="Write your message..."
+                          required></textarea>
 
-                <button type="submit" class="send-btn">
-                    Send Message →
+                <button type="submit" class="btn send-btn">
+                    Submit Message →
                 </button>
 
-                <p id="formMessage"></p>
-
+                <p id="formMessage" aria-live="polite"></p>
             </form>
 
+            <p class="form-note">
+                Demonstration form: it validates your entries but does
+                not send emails.
+            </p>
         </div>
 
-    </div>
+    </section>
 
-</section>
+</main>
 
 <footer>
-    <p>Designed & Created by Shradha Biradar © 2026</p>
+    Designed &amp; Created by Shradha Biradar © 2026
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
