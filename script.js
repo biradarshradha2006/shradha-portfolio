@@ -1,7 +1,16 @@
 
 $(document).ready(function () {
 
-    $("#contactForm").on("submit", function (event) {
+    const form = $("#contactForm");
+
+    // Name: letters and spaces only.
+    const namePattern = /^[A-Za-z]+(?:\s+[A-Za-z]+)*$/;
+
+    // Accept commonly used valid email extensions.
+    const emailPattern =
+        /^[A-Za-z0-9]+(?:[._%+-][A-Za-z0-9]+)*@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)*\.(com|in|org|net|edu|gov|co|uk|us|io|ai|info|biz|me|dev|app|tech|ac)$/i;
+
+    form.on("submit", function (event) {
 
         event.preventDefault();
 
@@ -10,83 +19,102 @@ $(document).ready(function () {
         let subject = $("#subject").val().trim();
         let message = $("#message").val().trim();
 
-        // Name: only letters, spaces, hyphens and apostrophes
-        let namePattern = /^[A-Za-z]+(?:[ '-][A-Za-z]+)*$/;
-
-        // Email: proper email format with a valid-looking domain
-        let emailPattern =
-            /^[A-Za-z0-9_%+-]+(?:\.[A-Za-z0-9_%+-]+)*@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)*\.[A-Za-z]{2,24}$/;
-
-        // Check empty fields
+        // Check empty fields.
         if (!name || !email || !subject || !message) {
             showMessage("Please fill in all fields.", false);
             return;
         }
 
-        // Name validation
-        if (name.length < 2 || name.length > 60 || !namePattern.test(name)) {
+        // Validate name.
+        if (!namePattern.test(name) || name.length < 2 || name.length > 80) {
             showMessage(
-                "Invalid name! Please use only letters and spaces. Numbers and special characters are not allowed.",
+                "Invalid name. Please use letters and spaces only. Numbers and special characters are not allowed.",
                 false
             );
+
             $("#name").focus();
             return;
         }
 
-        // Email validation
-        if (!emailPattern.test(email)) {
+        // Validate email.
+        if (
+            !emailPattern.test(email) ||
+            email.includes("..") ||
+            email.length > 254
+        ) {
             showMessage(
-                "Invalid email! Please enter a proper email address, such as name@gmail.com.",
+                "Please enter a valid email address, such as example@gmail.com. Check your email extension.",
                 false
             );
+
             $("#email").focus();
             return;
         }
 
-        // Reject .con instead of .com
-        if (email.toLowerCase().endsWith(".con")) {
+        // Validate subject.
+        if (subject.length < 2 || subject.length > 100) {
             showMessage(
-                "Invalid email domain! Please check whether you meant .com instead of .con.",
+                "Please enter a subject between 2 and 100 characters.",
                 false
             );
-            $("#email").focus();
-            return;
-        }
 
-        // Subject validation
-        if (subject.length < 3) {
-            showMessage("Subject must contain at least 3 characters.", false);
             $("#subject").focus();
             return;
         }
 
-        // Message validation
+        // Validate message.
         if (message.length < 10) {
-            showMessage("Message must contain at least 10 characters.", false);
+            showMessage(
+                "Your message must contain at least 10 characters.",
+                false
+            );
+
             $("#message").focus();
             return;
         }
 
-        // Success message
+        if (message.length > 2000) {
+            showMessage(
+                "Your message cannot exceed 2000 characters.",
+                false
+            );
+
+            $("#message").focus();
+            return;
+        }
+
+        // Successful validation.
         showMessage(
             "Thank you, " + name +
-            "! Your details passed validation. This demo form does not send emails.",
+            "! Your details have been validated successfully. This demonstration form does not send emails.",
             true
         );
 
-        this.reset();
+        form[0].reset();
     });
 
 
-    // Display validation messages
+    // Display success and error messages.
     function showMessage(message, success) {
 
         $("#formMessage")
             .stop(true, true)
-            .css("color", success ? "#86efac" : "#fca5a5")
+            .css({
+                "color": success ? "#86efac" : "#fca5a5",
+                "font-weight": "500",
+                "line-height": "1.7"
+            })
             .text(message)
             .hide()
             .fadeIn(400);
     }
+
+
+    // Clear the message when the user starts again.
+    form.on("input", "input, textarea", function () {
+
+        $("#formMessage").stop(true, true).fadeOut(200);
+
+    });
 
 });
